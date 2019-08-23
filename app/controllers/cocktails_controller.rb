@@ -1,6 +1,6 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    @cocktails = Cocktail.order(created_at: :desc)
   end
 
   def show
@@ -15,7 +15,7 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new(cocktail_params)
 
     if @cocktail.save
-      redirect_to @cocktail
+      redirect_to cocktails_path, notice: 'New cocktail added'
     else
       render :new
     end
@@ -24,6 +24,6 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :description)
   end
 end
