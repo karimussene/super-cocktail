@@ -1,9 +1,15 @@
 <h1 class="header">List of cocktails</h1>
 
+<%#= cl_image_tag("pxab43shker9hqfksl0i",
+      width: 400, height: 300, crop: :fill) %>
+
+<%#= cl_image_tag("pxab43shker9hqfksl0i",
+      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+
 <div class="cards mb-5">
   <% @cocktails.each do |cocktail| %>
     <%= link_to cocktail_path(cocktail) do %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path('placeholder.jpg') %>)">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= photo_or_fallback(cocktail) %>)">
         <%= cocktail.name %>
       </div>
     <% end %>
